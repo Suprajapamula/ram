@@ -1,11 +1,55 @@
-message" cols="0" rows="10"></textarea>
-        <div>
-          <button type="button" id="submitBtn" onclick="submitForm()">Submit</button>
-        <button type="reset" id="submitBtn" >reset</button>
+<html>
+<head>
+    <style>
+        #cardContainer{
+            background-color:  rgba(0, 98, 255, 0.87);
+            padding-bottom: 10px;
+        }
+        #card{
+            background-color: aliceblue;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 60px;
+            margin-left: 350px;
+            margin-right: 350px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+        <div id="cardContainer">
+        <h1 style="color: white;text-align: center;padding:5px;">Customer Survey Form</h1>
+        <form id="card">
+            <table style="display: flex;">
+                <tr>
+                    <td>Name</td>
+                    <td>Email</td>
+                </tr>
+                <tr>
+                    <td><input type="text" id="firstName"></td>
+                    <td><input type="email" id="email"></td>
+                </tr>
+            </table>
+            <h5>Is this first time you are using our products & service?</h5>
+            <div><input type="radio" name="sel">Yes
+            <input type="radio" name="sel">No</div>
+            <h5>Would you suggestion to your friends and colleague?</h5>
+            <div><input type="radio" name="sel3">Yes
+            <input type="radio" name="sel3">No</div>
+            <h5>How satisfies are you with our company overall?</h5>
+            <div><input type="radio" name="sel2">Satisfied
+            <input type="radio" name="sel2">Undecided
+            <input type="radio" name="sel2">Unsatisfied</div>
+            <h5>Do you have suggestion to improve our service?</h5>
+            <textarea rows="5" columns="50"></textarea><br>
+            <div>
+            <button onclick="submitForm()" style="background-color: rgba(0, 98, 255, 0.87);border:0px;color:white;height:30px;width:100px;margin-top:10px;">submit</button>
+            <input type="reset" style="background-color: rgba(0, 98, 255, 0.87);border:0px;color:white;height:30px;width:100px;margin-top:10px;">
+            </div>
+        </form>
         </div>
-        
-    </form>
-
     <div id="popup" style="display: none;">
         
     </div>
@@ -13,32 +57,21 @@ message" cols="0" rows="10"></textarea>
     <script>
         function submitForm() {
             const firstName = document.getElementById('firstName').value;
-            const lastName = document.getElementById('lastName').value;
-            const dob = document.getElementById('dob').value;
-            const country = document.getElementById('country').value;
-            const gender = document.querySelector('input[type="radio"]:checked');
-            const profession = document.getElementById('profession').value;
+            const radioBtn = document.querySelector('input[type="radio"]:checked');
             const email = document.getElementById('email').value;
-            const mobile = document.getElementById('mobile').value;
 
-            if (!firstName || !lastName || !dob || !country || !gender || !profession || !email || !mobile) {
+            if (!firstName || !radioBtn || !email) {
                 alert("Please fill in all required fields.");
             } else {
-                const genderValue = gender.value;
+                const radioBtnValue = radioBtn.value;
                 const message = `
                     First Name: ${firstName}
-                    Last Name: ${lastName}
-                    Date of Birth: ${dob}
-                    Country: ${country}
-                    Gender: ${genderValue}
-                    Profession: ${profession}
+                    radioBtn: ${radioBtnValue}
                     Email: ${email}
-                    Mobile Number: ${mobile}
                 `;
                 const popup = document.getElementById('popup');
                 popup.innerHTML = message;
                 popup.style.display = 'block';
-                document.getElementById('surveyForm').reset();
             }
         }
     </script>
